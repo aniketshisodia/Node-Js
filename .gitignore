@@ -8,6 +8,7 @@ logs/
 
 # Environment variables
 .env
+config.env
 
 # Build files
 dist/
