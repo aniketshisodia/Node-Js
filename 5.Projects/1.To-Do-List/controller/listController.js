@@ -21,7 +21,6 @@ exports.createTask = async (req, res) => {
         })
     }
 }
-
 exports.getTasks = async (req, res) => {
     try {
         // Fetch all tasks from the database
@@ -48,22 +47,73 @@ exports.getTasks = async (req, res) => {
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Task List</title>
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
                 <style>
-                    #taskContainer {
-                        margin-top: 20px;
+                    body {
+                        font-family: 'Poppins', sans-serif;
+                        background-color: #f4f4f9;
+                        color: #333;
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                    }
+                    .container {
+                        background: #fff;
+                        padding: 2rem;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        width: 100%;
+                        max-width: 600px;
+                    }
+                    h1 {
+                        font-size: 2rem;
+                        font-weight: 600;
+                        color: #4a90e2;
+                        margin-bottom: 1.5rem;
+                        text-align: center;
                     }
                     .task {
-                        border: 1px solid #ccc;
-                        padding: 10px;
-                        margin-bottom: 10px;
-                        border-radius: 5px;
+                        background: #f9f9f9;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        margin-bottom: 1rem;
+                        border-left: 4px solid #4a90e2;
+                        transition: transform 0.2s, box-shadow 0.2s;
+                    }
+                    .task:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    }
+                    .task h2 {
+                        font-size: 1.25rem;
+                        font-weight: 600;
+                        color: #333;
+                        margin: 0 0 0.5rem 0;
+                    }
+                    .task p {
+                        font-size: 0.9rem;
+                        color: #666;
+                        margin: 0.25rem 0;
+                    }
+                    .task p strong {
+                        color: #333;
+                    }
+                    .no-tasks {
+                        text-align: center;
+                        color: #666;
+                        font-style: italic;
                     }
                 </style>
             </head>
             <body>
-                <h1>Task List</h1>
-                <div id="taskContainer">
-                    ${tasks.length > 0 ? tasksHTML : "<p>No tasks found.</p>"}
+                <div class="container">
+                    <h1>Task List</h1>
+                    <div id="taskContainer">
+                        ${tasks.length > 0 ? tasksHTML : '<p class="no-tasks">No tasks found.</p>'}
+                    </div>
                 </div>
             </body>
             </html>
@@ -77,13 +127,47 @@ exports.getTasks = async (req, res) => {
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Error</title>
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        font-family: 'Poppins', sans-serif;
+                        background-color: #f4f4f9;
+                        color: #333;
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                    }
+                    .container {
+                        background: #fff;
+                        padding: 2rem;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        width: 100%;
+                        max-width: 600px;
+                        text-align: center;
+                    }
+                    h1 {
+                        font-size: 2rem;
+                        font-weight: 600;
+                        color: #e74c3c;
+                        margin-bottom: 1.5rem;
+                    }
+                    p {
+                        font-size: 1rem;
+                        color: #666;
+                    }
+                </style>
             </head>
             <body>
-                <h1>Error</h1>
-                <p style="color: red;">Error loading tasks. Please try again later.</p>
+                <div class="container">
+                    <h1>Error</h1>
+                    <p style="color: red;">Error loading tasks. Please try again later.</p>
+                </div>
             </body>
             </html>
         `);
     }
-
-}
+};
