@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title Task List
+  body
+    h1 Task List
+    each task in tasks
+      div
+        h2= task.name
+        p Description: #{task.description}
+        p Timeline: #{task.timeline}

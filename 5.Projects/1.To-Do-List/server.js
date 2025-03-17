@@ -16,16 +16,22 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 
 
 app.get('/', (req, res) => {
-    res.send('Home Route');
+    res.sendFile(path.join(__dirname, 'public/view/home.html'));
 });
 
 app.use('/api/list', listRouter);
 
-app.get('/api/list/add-task', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'view', 'index.html'));
+app.get('/api/list/create-task', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'view', 'create-task.html'));
 });
+
+app.get('/api/list/get-tasks', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'view', 'get-tasks.html'));
+});
+
+
 const PORT = 3000;
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server is runnning');
 })

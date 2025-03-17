@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <style>
+      /* Optional: Add some basic styling */
+      #taskContainer {
+        margin-top: 20px;
+      }
+      .task {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task List</h1>
+    <div id="taskContainer">Loading tasks...</div>
+
+    <script>
+      async function fetchTasks() {
+        try {
+          // Fetch tasks from the API
+          const response = await fetch("/api/list/get-tasks");
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          // Parse the JSON response
+          const tasks = await response.json();
+          console.log("Fetched Tasks:", tasks); // Debugging: Log fetched tasks
+
+          // Get the container element
+          const container = document.getElementById("taskContainer");
+
+          // Clear the container
+          container.innerHTML = "";
+
+          // Check if tasks array is empty
+          if (tasks.length === 0) {
+            container.innerHTML = "<p>No tasks found.</p>";
+            return;
+          }
+
+          // Render each task
+          tasks.forEach((task) => {
+            const div = document.createElement("div");
+            div.className = "task"; // Add a class for styling
+            div.innerHTML = `
+              <h2>${task.name || "No Name"}</h2>
+              <p><strong>Description:</strong> ${
+                task.description || "No Description"
+              }</p>
+              <p><strong>Timeline:</strong> ${
+                task.timeline
+                  ? new Date(task.timeline).toLocaleDateString()
+                  : "No Date"
+              }</p>
+            `;
+            container.appendChild(div);
+          });
+        } catch (error) {
+          console.log("Error fetching tasks:", error);
+          // Display an error message to the user
+          const container = document.getElementById("taskContainer");
+          container.innerHTML = `<p style="color: red;">Error loading tasks. Please try again later.</p>`;
+        }
+      }
+
+      // Fetch tasks when the page loads
+      document.addEventListener("DOMContentLoaded", fetchTasks);
+    </script>
+  </body>
+</html>

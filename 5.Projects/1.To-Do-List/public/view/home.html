@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+      }
+      h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+      .cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 200px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task Manager</h1>
+      <div class="cards">
+        <div class="card" onclick="f('api/list/create-task')">Create Task</div>
+        <div class="card" onclick="f('api/list/get-tasks')">Get All Tasks</div>
+        <div class="card" onclick="f('api/list/update-task')">
+          Update a Task
+        </div>
+        <div class="card" onclick="f('api/list/delete-task')">
+          Delete a Task
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function f(url) {
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
