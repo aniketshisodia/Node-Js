@@ -2,7 +2,7 @@ const express = require('express');
 
 const listController = require('../controller/listController');
 const router = express.Router();
-router.post('/add-task', listController.creatTask);
+router.post('/add-task', listController.createTask);
 
 module.exports = router;
 

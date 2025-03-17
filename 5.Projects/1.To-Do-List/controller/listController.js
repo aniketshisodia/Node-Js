@@ -1,6 +1,6 @@
 const List = require('../Model/List');
 
-exports.creatTask = async (req, res) => {
+exports.createTask = async (req, res) => {
     try {
         const { name, description, timeline } = req.body;
         const newTask = await List.create({ name, description, timeline });
