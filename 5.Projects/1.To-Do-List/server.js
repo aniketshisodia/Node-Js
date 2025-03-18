@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const listRouter = require('./routes/listRouter');
 const path = require('path');
 const dotenv = require('dotenv');
+const cors = require('cors');
 dotenv.config({ path: './config.env' });
 
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors());
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log('MongoDB connected');
 }).catch(err => console.log(err));
